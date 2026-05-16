@@ -1,6 +1,6 @@
 [package]
-name = "scrap"
-description = "Screen capture made easy."
+name = "claildesk_scrap"
+description = "ClailDesk screen capture library."
 version = "0.5.0"
 repository = "https://github.com/quadrupleslap/scrap"
 documentation = "https://docs.rs/scrap"

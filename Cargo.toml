@@ -18,7 +18,7 @@ default = ["use_dasp"]
 
 [dependencies]
 whoami = "1.2"
-scrap = { path = "libs/scrap" }
+claildesk_scrap = { path = "libs/claildesk_scrap" }
 claildesk_common = { path = "libs/claildesk_common" }
 enigo = { path = "libs/enigo" }
 clipboard = { path = "libs/clipboard" }
@@ -84,7 +84,7 @@ rust-pulsectl = { git = "https://github.com/open-trade/pulsectl" }
 android_logger = "0.11"
 
 [workspace]
-members = ["libs/scrap", "libs/claildesk_common", "libs/enigo", "libs/clipboard", "libs/virtual_display"]
+members = ["libs/claildesk_scrap", "libs/claildesk_common", "libs/enigo", "libs/clipboard", "libs/virtual_display"]
 
 [package.metadata.winres]
 LegalCopyright = "Copyright © 2020"
