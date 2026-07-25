@@ -1,106 +1,14 @@
 use hbb_common::regex::Regex;
 use std::ops::Deref;
 
-mod ar;
-mod be;
-mod bg;
-mod ca;
 mod cn;
-mod cs;
-mod da;
-mod de;
-mod el;
-mod en;
-mod eo;
-mod es;
-mod et;
-mod eu;
-mod fa;
-mod gu;
-mod fr;
-mod he;
-mod hi;
-mod hr;
-mod hu;
-mod id;
-mod it;
-mod ja;
-mod ko;
-mod kz;
-mod lt;
-mod lv;
-mod nb;
-mod nl;
-mod pl;
-mod ptbr;
-mod ro;
-mod ru;
-mod sc;
-mod sk;
-mod sl;
-mod sq;
-mod sr;
-mod sv;
-mod th;
-mod tr;
 mod tw;
-mod uk;
-mod vi;
-mod ta;
-mod ge;
-mod fi;
-mod ml;
+mod en;
 
 pub const LANGS: &[(&str, &str)] = &[
     ("en", "English"),
-    ("it", "Italiano"),
-    ("fr", "Français"),
-    ("de", "Deutsch"),
-    ("nl", "Nederlands"),
-    ("nb", "Norsk bokmål"),
     ("zh-cn", "简体中文"),
     ("zh-tw", "繁體中文"),
-    ("pt", "Português"),
-    ("es", "Español"),
-    ("et", "Eesti keel"),
-    ("eu", "Euskara"),
-    ("hu", "Magyar"),
-    ("bg", "Български"),
-    ("be", "Беларуская"),
-    ("ru", "Русский"),
-    ("sk", "Slovenčina"),
-    ("id", "Indonesia"),
-    ("cs", "Čeština"),
-    ("da", "Dansk"),
-    ("eo", "Esperanto"),
-    ("tr", "Türkçe"),
-    ("vi", "Tiếng Việt"),
-    ("pl", "Polski"),
-    ("ja", "日本語"),
-    ("ko", "한국어"),
-    ("kz", "Қазақ"),
-    ("uk", "Українська"),
-    ("fa", "فارسی"),
-    ("ca", "Català"),
-    ("el", "Ελληνικά"),
-    ("sv", "Svenska"),
-    ("sq", "Shqip"),
-    ("sr", "Srpski"),
-    ("th", "ภาษาไทย"),
-    ("sl", "Slovenščina"),
-    ("ro", "Română"),
-    ("lt", "Lietuvių"),
-    ("lv", "Latviešu"),
-    ("ar", "العربية"),
-    ("he", "עברית"),
-    ("hr", "Hrvatski"),
-    ("sc", "Sardu"),
-    ("ta", "தமிழ்"),
-    ("ge", "ქართული"),
-    ("fi", "Suomi"),
-    ("ml", "മലയാളം"),
-    ("hi", "हिंदी"),
-    ("gu", "ગુજરાતી"),
 ];
 
 pub(crate) fn cjk_ui_unavailable() -> bool {
@@ -165,55 +73,8 @@ pub fn translate_locale(name: String, locale: &str) -> String {
         cjk_ui_unavailable(),
     );
     let m = match lang.as_str() {
-        "fr" => fr::T.deref(),
         "zh-cn" => cn::T.deref(),
-        "it" => it::T.deref(),
         "zh-tw" => tw::T.deref(),
-        "de" => de::T.deref(),
-        "nb" => nb::T.deref(),
-        "nl" => nl::T.deref(),
-        "es" => es::T.deref(),
-        "et" => et::T.deref(),
-        "eu" => eu::T.deref(),
-        "hu" => hu::T.deref(),
-        "ru" => ru::T.deref(),
-        "eo" => eo::T.deref(),
-        "id" => id::T.deref(),
-        "br" => ptbr::T.deref(),
-        "pt" => ptbr::T.deref(),
-        "tr" => tr::T.deref(),
-        "cs" => cs::T.deref(),
-        "da" => da::T.deref(),
-        "sk" => sk::T.deref(),
-        "vi" => vi::T.deref(),
-        "pl" => pl::T.deref(),
-        "ja" => ja::T.deref(),
-        "ko" => ko::T.deref(),
-        "kz" => kz::T.deref(),
-        "uk" => uk::T.deref(),
-        "fa" => fa::T.deref(),
-        "fi" => fi::T.deref(),
-        "ca" => ca::T.deref(),
-        "el" => el::T.deref(),
-        "sv" => sv::T.deref(),
-        "sq" => sq::T.deref(),
-        "sr" => sr::T.deref(),
-        "th" => th::T.deref(),
-        "sl" => sl::T.deref(),
-        "ro" => ro::T.deref(),
-        "lt" => lt::T.deref(),
-        "lv" => lv::T.deref(),
-        "ar" => ar::T.deref(),
-        "bg" => bg::T.deref(),
-        "be" => be::T.deref(),
-        "he" => he::T.deref(),
-        "hr" => hr::T.deref(),
-        "sc" => sc::T.deref(),
-        "ta" => ta::T.deref(),
-        "ge" => ge::T.deref(),
-        "ml" => ml::T.deref(),
-        "hi" => hi::T.deref(),
-        "gu" => gu::T.deref(),
         _ => en::T.deref(),
     };
     let (name, placeholder_value) = extract_placeholder(&name);
@@ -222,31 +83,21 @@ pub fn translate_locale(name: String, locale: &str) -> String {
         if let Some(value) = placeholder_value.as_ref() {
             s = s.replace("{}", &value);
         }
-        if !crate::is_rustdesk() {
-            if s.contains("RustDesk")
-                && !name.starts_with("upgrade_rustdesk_server_pro")
-                && name != "powered_by_me"
-            {
+        // Replace brand name with actual app name
+        for brand in ["RustDesk", "ClaiDesk"] {
+            if s.contains(brand) {
                 let app_name = crate::get_app_name();
-                if !app_name.contains("RustDesk") {
-                    s = s.replace("RustDesk", &app_name);
+                if !app_name.contains(brand) {
+                    s = s.replace(brand, &app_name);
                 } else {
-                    // https://github.com/rustdesk/rustdesk-server-pro/issues/845
-                    // If app_name contains "RustDesk" (e.g., "RustDesk-Admin"), we need to avoid
-                    // replacing "RustDesk" within the already-substituted app_name, which would
-                    // cause duplication like "RustDesk-Admin" -> "RustDesk-Admin-Admin".
-                    //
-                    // app_name only contains alphanumeric and hyphen.
                     const PLACEHOLDER: &str = "#A-P-P-N-A-M-E#";
                     if !s.contains(PLACEHOLDER) {
                         s = s.replace(&app_name, PLACEHOLDER);
-                        s = s.replace("RustDesk", &app_name);
+                        s = s.replace(brand, &app_name);
                         s = s.replace(PLACEHOLDER, &app_name);
-                    } else {
-                        // It's very unlikely to reach here.
-                        // Skip replacement to avoid incorrect result.
                     }
                 }
+                break;
             }
         }
         s
@@ -314,8 +165,6 @@ mod test {
 
         assert_eq!(f("zh-cn", "en-US", true), "en");
         assert_eq!(f("zh-tw", "en-US", true), "en");
-        assert_eq!(f("ja", "en-US", true), "en");
-        assert_eq!(f("ko", "en-US", true), "en");
     }
 
     #[test]
@@ -323,8 +172,6 @@ mod test {
         use super::resolve_lang as f;
 
         assert_eq!(f("", "zh_CN", true), "en");
-        assert_eq!(f("", "ja-JP", true), "en");
-        assert_eq!(f("", "ko_KR", true), "en");
     }
 
     #[test]
@@ -333,6 +180,5 @@ mod test {
 
         assert_eq!(f("zh-cn", "en-US", false), "zh-cn");
         assert_eq!(f("", "zh_TW", false), "zh-tw");
-        assert_eq!(f("", "ja-JP", false), "ja");
     }
 }
