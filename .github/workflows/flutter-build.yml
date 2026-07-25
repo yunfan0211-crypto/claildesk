@@ -915,7 +915,7 @@ jobs:
           dotnet: true
           haskell: true
           large-packages: false
-          docker-images: true
+          docker-images: false
           swap-storage: false
 
       - name: Export GitHub Actions cache environment variables
@@ -1184,7 +1184,7 @@ jobs:
           dotnet: true
           haskell: true
           large-packages: false
-          docker-images: true
+          docker-images: false
           swap-storage: false
 
       - name: Export GitHub Actions cache environment variables
