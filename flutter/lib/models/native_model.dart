@@ -16,7 +16,7 @@ import '../common.dart';
 import '../generated_bridge.dart';
 
 // Type alias for backward compatibility with code referencing RustdeskImpl
-typedef RustdeskImpl = Claildesk;
+typedef RustdeskImpl = ClaildeskImpl;
 
 final class RgbaFrame extends Struct {
   @Uint32()
