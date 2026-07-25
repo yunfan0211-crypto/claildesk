@@ -12,7 +12,7 @@
   English · <a href="README.zh-CN.md">简体中文</a>
 </p>
 
-claildesk is an independently maintained fork of RustDesk for direct remote access inside a LAN or VPN. It removes the public device-ID, rendezvous, relay, cloud account, proxy, and automatic public-update paths, replacing them with direct endpoint connections and local device discovery.
+claildesk is an independently maintained remote desktop tool for direct remote access inside a LAN or VPN. It removes the public device-ID, rendezvous, relay, cloud account, proxy, and automatic public-update paths, replacing them with direct endpoint connections and local device discovery.
 
 ![Discovered devices](assets/screenshots/device-discovery.png)
 

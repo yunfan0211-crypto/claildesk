@@ -5,7 +5,7 @@
 # claildesk
 
 <p align="center">
-  基于 <a href="https://github.com/rustdesk/rustdesk">RustDesk</a> 修改的简洁局域网远程桌面工具。
+  一个简洁的局域网远程桌面工具，基于 RustDesk 修改。
 </p>
 
 <p align="center">
