@@ -1,5 +1,5 @@
 [Unit]
-Description=ClaiDesk
+Description=claildesk
 Requires=network.target
 After=systemd-user-sessions.service
 

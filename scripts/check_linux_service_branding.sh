@@ -45,7 +45,7 @@ if [[ -e res/rustdesk.service ]]; then
   exit 1
 fi
 
-require_fixed "$service_resource" 'Description=ClaiDesk'
+require_fixed "$service_resource" 'Description=claildesk'
 require_fixed "$service_resource" 'ExecStop=/usr/bin/pkill -f "rustdesk --"'
 require_fixed res/DEBIAN/postinst '/usr/lib/systemd/system/claildesk.service'
 require_fixed res/DEBIAN/postinst 'systemctl enable claildesk'
@@ -71,7 +71,7 @@ require_fixed res/pacman_install 'systemctl stop claildesk'
 require_fixed res/pacman_install 'systemctl disable claildesk'
 
 # Stopping/removing rustdesk.service is retained only as an upgrade migration.
-# It must never be installed, enabled, or started by a ClaiDesk package.
+# It must never be installed, enabled, or started by a claildesk package.
 reject_pattern 'res/rustdesk\.service' "${packaging_files[@]}"
 reject_pattern 'cp .*rustdesk\.service .*/(etc|usr/lib)/systemd' "${packaging_files[@]}"
 reject_pattern 'systemctl +(enable|start) +rustdesk([ .;]|$)' "${packaging_files[@]}"

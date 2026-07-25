@@ -84,7 +84,7 @@ pub fn translate_locale(name: String, locale: &str) -> String {
             s = s.replace("{}", &value);
         }
         // Replace brand name with actual app name
-        for brand in ["RustDesk", "ClaiDesk"] {
+        for brand in ["RustDesk", "claildesk"] {
             if s.contains(brand) {
                 let app_name = crate::get_app_name();
                 if !app_name.contains(brand) {

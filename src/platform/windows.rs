@@ -1980,8 +1980,8 @@ fn get_public_base_dir() -> PathBuf {
 #[inline]
 pub fn get_custom_client_staging_dir() -> PathBuf {
     get_public_base_dir()
-        .join("ClaiDesk")
-        .join("ClaiDeskCustomClientStaging")
+        .join("claildesk")
+        .join("claildeskCustomClientStaging")
 }
 
 /// Removes the custom client staging directory.
@@ -3795,7 +3795,7 @@ pub fn message_box(text: &str) {
         .encode_utf16()
         .chain(std::iter::once(0))
         .collect::<Vec<u16>>();
-    let caption = "ClaiDesk Output"
+    let caption = "claildesk Output"
         .encode_utf16()
         .chain(std::iter::once(0))
         .collect::<Vec<u16>>();

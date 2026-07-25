@@ -7,8 +7,8 @@ cd flutter; flutter pub get; cd -
 ./build.py --flutter
 rm claildesk-$VERSION.dmg
 # security find-identity -v
-codesign --force --options runtime -s $MACOS_CODESIGN_IDENTITY --deep --strict ./flutter/build/macos/Build/Products/Release/ClaiDesk.app -vvv
-create-dmg --icon "ClaiDesk.app" 200 190 --hide-extension "ClaiDesk.app" --window-size 800 400 --app-drop-link 600 185 claildesk-$VERSION.dmg ./flutter/build/macos/Build/Products/Release/ClaiDesk.app
+codesign --force --options runtime -s $MACOS_CODESIGN_IDENTITY --deep --strict ./flutter/build/macos/Build/Products/Release/claildesk.app -vvv
+create-dmg --icon "claildesk.app" 200 190 --hide-extension "claildesk.app" --window-size 800 400 --app-drop-link 600 185 claildesk-$VERSION.dmg ./flutter/build/macos/Build/Products/Release/claildesk.app
 codesign --force --options runtime -s $MACOS_CODESIGN_IDENTITY --deep --strict claildesk-$VERSION.dmg -vvv
 # notarize the claildesk-${{ env.VERSION }}.dmg
 rcodesign notary-submit --api-key-path ~/.p12/api-key.json  --staple claildesk-$VERSION.dmg

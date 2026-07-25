@@ -744,8 +744,8 @@ pub fn start_os_service() {
     /* // mouse/keyboard works in prelogin now with launchctl asuser.
        // below can avoid multi-users logged in problem, but having its own below problem.
        // Not find a good way to start --cm without root privilege (affect file transfer).
-       // one way is to start with `launchctl asuser <uid> open -n -a /Applications/ClaiDesk.app/ --args --cm`,
-       // this way --cm is started with the user privilege, but we will have problem to start another ClaiDesk.app
+       // one way is to start with `launchctl asuser <uid> open -n -a /Applications/claildesk.app/ --args --cm`,
+       // this way --cm is started with the user privilege, but we will have problem to start another claildesk.app
        // with open in explorer.
         use std::sync::{
             atomic::{AtomicBool, Ordering},
@@ -842,7 +842,7 @@ pub fn update_me() -> ResultType<()> {
     );
 
     let cmd = std::env::current_exe()?;
-    // ClaiDesk.app/Contents/MacOS/ClaiDesk
+    // claildesk.app/Contents/MacOS/claildesk
     let app_dir = cmd
         .parent()
         .and_then(|p| p.parent())
@@ -938,7 +938,7 @@ pub fn extract_update_dmg(file: &str) {
 }
 
 fn extract_dmg(dmg_path: &str, target_dir: &str) -> ResultType<()> {
-    let mount_point = "/Volumes/ClaiDeskUpdate";
+    let mount_point = "/Volumes/claildeskUpdate";
     let target_path = Path::new(target_dir);
 
     if target_path.exists() {

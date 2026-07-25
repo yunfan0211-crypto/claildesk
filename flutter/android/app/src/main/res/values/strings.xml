@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ClaiDesk</string>
-    <string name="input_service_name">ClaiDesk Input</string>
-    <string name="accessibility_service_description">Allow other devices to control your phone using virtual touch when ClaiDesk screen sharing is established</string>
+    <string name="app_name">claildesk</string>
+    <string name="input_service_name">claildesk Input</string>
+    <string name="accessibility_service_description">Allow other devices to control your phone using virtual touch when claildesk screen sharing is established</string>
 </resources>

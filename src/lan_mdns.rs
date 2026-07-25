@@ -135,7 +135,7 @@ pub(super) fn spawn_browse(tx: UnboundedSender<DiscoveryPeer>) -> ResultType<()>
     let daemon = ServiceDaemon::new().map_err(|err| anyhow!("Failed to start mDNS: {err}"))?;
     let receiver = daemon
         .browse(SERVICE_TYPE)
-        .map_err(|err| anyhow!("Failed to browse for ClaiDesk peers: {err}"))?;
+        .map_err(|err| anyhow!("Failed to browse for claildesk peers: {err}"))?;
     let local_fingerprint = device_fingerprint(&Config::get_key_pair().1);
 
     thread::spawn(move || {
@@ -343,7 +343,7 @@ fn safe_display_name(value: &str) -> String {
         .take(64)
         .collect::<String>();
     if filtered.is_empty() {
-        "ClaiDesk".to_owned()
+        "claildesk".to_owned()
     } else {
         filtered
     }

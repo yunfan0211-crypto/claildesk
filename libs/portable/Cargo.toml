@@ -2,7 +2,7 @@
 name = "claildesk-portable-packer"
 version = "1.1.0"
 edition = "2021"
-description = "ClaiDesk Remote Desktop"
+description = "claildesk Remote Desktop"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -27,7 +27,7 @@ native-windows-gui = {version = "1.0", default-features = false, features = ["an
 
 [package.metadata.winres]
 LegalCopyright = "Copyright © 2026 Purslane Tech Pte. Ltd. All rights reserved."
-ProductName = "ClaiDesk"
+ProductName = "claildesk"
 OriginalFilename = "claildesk.exe"
 FileDescription = "RustDesk Remote Desktop"
 #ProductVersion = ""

@@ -26,11 +26,11 @@
         <true />
         <key>ProgramArguments</key>
         <array>
-            <string>/Applications/ClaiDesk.app/Contents/MacOS/RustDesk</string>
+            <string>/Applications/claildesk.app/Contents/MacOS/RustDesk</string>
             <string>--server</string>
         </array>
         <key>WorkingDirectory</key>
-        <string>/Applications/ClaiDesk.app/Contents/MacOS/</string>
+        <string>/Applications/claildesk.app/Contents/MacOS/</string>
         <key>ProcessType</key>
         <string>Interactive</string>
     </dict>

@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="res/claildesk-icon.svg" alt="ClaiDesk" width="112">
+  <img src="res/claildesk-icon.svg" alt="claildesk" width="112">
 </p>
 
-# ClaiDesk
+# claildesk
 
 <p align="center">
   A simple, LAN-first remote desktop application based on <a href="https://github.com/rustdesk/rustdesk">RustDesk</a>.
@@ -12,7 +12,7 @@
   English · <a href="README.zh-CN.md">简体中文</a>
 </p>
 
-ClaiDesk is an independently maintained fork of RustDesk for direct remote access inside a LAN or VPN. It removes the public device-ID, rendezvous, relay, cloud account, proxy, and automatic public-update paths, replacing them with direct endpoint connections and local device discovery.
+claildesk is an independently maintained fork of RustDesk for direct remote access inside a LAN or VPN. It removes the public device-ID, rendezvous, relay, cloud account, proxy, and automatic public-update paths, replacing them with direct endpoint connections and local device discovery.
 
 ![Discovered devices](assets/screenshots/device-discovery.png)
 
@@ -26,11 +26,11 @@ ClaiDesk is an independently maintained fork of RustDesk for direct remote acces
 - Keep recent devices and favorites for quick reconnection.
 - Use the familiar RustDesk remote-control experience without a public coordination server.
 
-> ClaiDesk does not provide Internet rendezvous or relay services. Devices must be reachable through the same LAN, a routed private network, or a VPN such as WireGuard, Tailscale, or OpenVPN.
+> claildesk does not provide Internet rendezvous or relay services. Devices must be reachable through the same LAN, a routed private network, or a VPN such as WireGuard, Tailscale, or OpenVPN.
 
 ## Quick start
 
-1. Install and open ClaiDesk on both devices.
+1. Install and open claildesk on both devices.
 2. On the controlled device, open **LAN settings**, set a username and password, and enable LAN discovery. The default port is `21118`.
 3. On the controller, select a discovered device or enter its address manually, then verify the fingerprint and connect.
 
@@ -38,13 +38,13 @@ ClaiDesk is an independently maintained fork of RustDesk for direct remote acces
 
 ## Download and build
 
-Prebuilt desktop packages for Windows, macOS, and Linux are published on the [Releases](https://github.com/zibo-chen/ClaiDesk/releases) page. Continuous builds are also available from [GitHub Actions](https://github.com/zibo-chen/ClaiDesk/actions).
+Prebuilt desktop packages for Windows, macOS, and Linux are published on the [Releases](https://github.com/zibo-chen/claildesk/releases) page. Continuous builds are also available from [GitHub Actions](https://github.com/zibo-chen/claildesk/actions).
 
 To build from source, clone the submodules and use the platform-specific commands in the release workflow:
 
 ```bash
-git clone --recurse-submodules https://github.com/zibo-chen/ClaiDesk.git
-cd ClaiDesk
+git clone --recurse-submodules https://github.com/zibo-chen/claildesk.git
+cd claildesk
 ./build.py --flutter --hwcodec
 ```
 
@@ -52,6 +52,6 @@ The build requires Rust, Flutter, and native platform dependencies. The GitHub A
 
 ## Credits and license
 
-ClaiDesk is based on [RustDesk](https://github.com/rustdesk/rustdesk) and retains its open-source foundations. ClaiDesk is an independent project and is not an official RustDesk release.
+claildesk is based on [RustDesk](https://github.com/rustdesk/rustdesk) and retains its open-source foundations. claildesk is an independent project and is not an official RustDesk release.
 
 Licensed under the [GNU Affero General Public License v3.0](LICENCE). Use remote-control software only on systems you own or are authorized to administer.
