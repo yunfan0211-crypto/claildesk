@@ -42,7 +42,7 @@ fn select_device_display_name(custom_name: &str, system_hostname: &str) -> Strin
     }
     let system_hostname = sanitize_lan_device_name(system_hostname);
     if system_hostname.is_empty() {
-        "SubnetDesk".to_owned()
+        "ClaiDesk".to_owned()
     } else {
         system_hostname
     }
@@ -447,6 +447,6 @@ mod tests {
             "Studio Mac"
         );
         assert_eq!(select_device_display_name("", "host.local"), "host.local");
-        assert_eq!(select_device_display_name("", "\n"), "SubnetDesk");
+        assert_eq!(select_device_display_name("", "\n"), "ClaiDesk");
     }
 }

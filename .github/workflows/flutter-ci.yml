@@ -1,4 +1,4 @@
-name: SubnetDesk Installers CI
+name: ClaiDesk Installers CI
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ on:
       - ".github/workflows/ci.yml"
 
 concurrency:
-  group: subnetdesk-flutter-ci-${{ github.ref }}
+  group: claildesk-flutter-ci-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

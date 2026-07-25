@@ -1,4 +1,4 @@
-name: SubnetDesk Preflight
+name: ClaiDesk Preflight
 
 permissions:
   contents: read
@@ -11,7 +11,7 @@ on:
       - master
 
 concurrency:
-  group: subnetdesk-preflight-${{ github.ref }}
+  group: claildesk-preflight-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -27,8 +27,8 @@ jobs:
       - name: Check LAN-only residuals
         run: bash scripts/check_lan_only_residuals.sh
 
-      - name: Check SubnetDesk branding and icons
-        run: bash scripts/check_subnetdesk_branding.sh
+      - name: Check ClaiDesk branding and icons
+        run: bash scripts/check_claildesk_branding.sh
 
       - name: Check installer artifact contract
         run: |
@@ -47,12 +47,12 @@ jobs:
           sed -n '/^  build-for-windows-flutter:/,/^  build-for-windows-sciter:/p' .github/workflows/flutter-build.yml | grep -Fq 'toolchain: ${{ env.RUST_VERSION }}'
           ! sed -n '/^  build-for-windows-flutter:/,/^  build-for-windows-sciter:/p' .github/workflows/flutter-build.yml | grep -Fq 'toolchain: ${{ env.SCITER_RUST_VERSION }}'
           for artifact in \
-            'name: subnetdesk-windows-' \
-            'name: subnetdesk-macos-' \
-            'name: subnetdesk-linux-rpm-' \
-            'name: subnetdesk-archlinux-' \
-            'name: subnetdesk-appimage-' \
-            'name: subnetdesk-flatpak-'
+            'name: claildesk-windows-' \
+            'name: claildesk-macos-' \
+            'name: claildesk-linux-rpm-' \
+            'name: claildesk-archlinux-' \
+            'name: claildesk-appimage-' \
+            'name: claildesk-flatpak-'
           do
             grep -Fq "$artifact" .github/workflows/flutter-build.yml
           done
@@ -61,7 +61,7 @@ jobs:
         run: bash scripts/check_release_upload_retry.sh
 
       - name: Check Python scripts
-        run: python3 -m py_compile build.py scripts/generate_subnetdesk_icons.py
+        run: python3 -m py_compile build.py scripts/generate_claildesk_icons.py
 
       - name: Check workflow syntax
         run: |

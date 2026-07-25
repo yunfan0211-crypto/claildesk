@@ -1,15 +1,15 @@
 [package]
-name = "rustdesk"
+name = "claildesk"
 version = "1.1.0"
-authors = ["SubnetDesk contributors"]
+authors = ["ClaiDesk contributors"]
 edition = "2021"
 build= "build.rs"
-description = "SubnetDesk LAN/VPN Remote Desktop"
-default-run = "rustdesk"
+description = "ClaiDesk LAN/VPN Remote Desktop"
+default-run = "claildesk"
 rust-version = "1.75"
 
 [lib]
-name = "librustdesk"
+name = "libclaildesk"
 crate-type = ["cdylib", "staticlib", "rlib"]
 
 [[bin]]
@@ -214,9 +214,9 @@ exclude = ["vdi/host", "examples/custom_plugin"]
 libxdo-sys = { path = "libs/libxdo-sys-stub" }
 
 [package.metadata.winres]
-LegalCopyright = "Copyright © 2026 SubnetDesk contributors."
-ProductName = "SubnetDesk"
-FileDescription = "SubnetDesk LAN/VPN Remote Desktop"
+LegalCopyright = "Copyright © 2026 ClaiDesk contributors."
+ProductName = "ClaiDesk"
+FileDescription = "ClaiDesk LAN/VPN Remote Desktop"
 OriginalFilename = "rustdesk.exe"
 
 [target.'cfg(target_os="windows")'.build-dependencies]
@@ -233,8 +233,8 @@ hound = "3.5"
 docopt = "1.1"
 
 [package.metadata.bundle]
-name = "SubnetDesk"
-identifier = "com.zibochen.subnetdesk"
+name = "ClaiDesk"
+identifier = "com.claildesk"
 icon = ["res/32x32.png", "res/128x128.png", "res/128x128@2x.png"]
 osx_minimum_system_version = "10.14"
 

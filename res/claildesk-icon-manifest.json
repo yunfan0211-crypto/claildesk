@@ -51,6 +51,6 @@
     "res/scalable.svg": "62d2496d0ae76b623f45efabd4b20131643b3a60fbad22d6367c97da13bd4223",
     "res/tray-icon.ico": "4fbf7696fdadf4b54817ff2881475e68440fb61539878471c5345879f4cc487f"
   },
-  "source": "res/subnetdesk-icon.svg",
+  "source": "res/claildesk-icon.svg",
   "source_sha256": "62d2496d0ae76b623f45efabd4b20131643b3a60fbad22d6367c97da13bd4223"
 }

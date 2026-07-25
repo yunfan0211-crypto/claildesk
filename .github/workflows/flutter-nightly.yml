@@ -1,4 +1,4 @@
-name: SubnetDesk Nightly Build
+name: ClaiDesk Nightly Build
 
 permissions:
   contents: write

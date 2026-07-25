@@ -1,5 +1,5 @@
 {
-  "id": "com.zibochen.SubnetDesk",
+  "id": "com.zibochen.ClaiDesk",
   "runtime": "org.freedesktop.Platform",
   "runtime-version": "24.08",
   "sdk": "org.freedesktop.Sdk",
@@ -48,7 +48,7 @@
         },
         {
           "type": "file",
-          "path": "com.zibochen.SubnetDesk.metainfo.xml"
+          "path": "com.zibochen.ClaiDesk.metainfo.xml"
         }
       ]
     }

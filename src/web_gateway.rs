@@ -297,7 +297,7 @@ fn validate_tls_material(certificate: &[u8], private_key: &[u8]) -> ResultType<(
 }
 
 fn certificate_subject_alt_names() -> Vec<String> {
-    let mut names = vec!["localhost".to_owned(), "subnetdesk.local".to_owned()];
+    let mut names = vec!["localhost".to_owned(), "claildesk.local".to_owned()];
     for interface in default_net::get_interfaces() {
         names.extend(
             interface
@@ -940,8 +940,8 @@ mod tests {
             true,
         ));
         assert!(origin_allowed(
-            Some("http://subnetdesk.local:18123"),
-            "subnetdesk.local:18123",
+            Some("http://claildesk.local:18123"),
+            "claildesk.local:18123",
             false,
         ));
         assert!(!origin_allowed(
@@ -971,11 +971,11 @@ mod tests {
         let allowed = HashSet::from([
             "192.168.0.123".to_owned(),
             "fd00::20".to_owned(),
-            "subnetdesk.local".to_owned(),
+            "claildesk.local".to_owned(),
         ]);
         assert!(authority_host_allowed("192.168.0.123:18123", &allowed));
         assert!(authority_host_allowed("[fd00::20]:18123", &allowed));
-        assert!(authority_host_allowed("subnetdesk.local:18123", &allowed));
+        assert!(authority_host_allowed("claildesk.local:18123", &allowed));
         assert!(!authority_host_allowed("attacker.example:18123", &allowed));
     }
 
