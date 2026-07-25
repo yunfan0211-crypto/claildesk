@@ -15,6 +15,9 @@ import 'package:path_provider/path_provider.dart';
 import '../common.dart';
 import '../generated_bridge.dart';
 
+// Type alias for backward compatibility with code referencing RustdeskImpl
+typedef RustdeskImpl = Claildesk;
+
 final class RgbaFrame extends Struct {
   @Uint32()
   external int len;
