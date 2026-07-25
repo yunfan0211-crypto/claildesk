@@ -1,15 +1,15 @@
 [Unit]
-Description=SubnetDesk
+Description=ClaiDesk
 Requires=network.target
 After=systemd-user-sessions.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/rustdesk --service
+ExecStart=/usr/bin/claildesk --service
 # Kill the internally named --tray and --server processes as well.
-ExecStop=/usr/bin/pkill -f "rustdesk --"
-# The packaged executable keeps its internal rustdesk filename for compatibility.
-PIDFile=/run/subnetdesk.pid
+ExecStop=/usr/bin/pkill -f "claildesk --"
+# The packaged executable keeps its claildesk filename.
+PIDFile=/run/claildesk.pid
 KillMode=mixed
 TimeoutStopSec=30
 User=root

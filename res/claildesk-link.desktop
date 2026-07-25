@@ -2,10 +2,10 @@
 Name=ClaiDesk
 NoDisplay=true
 MimeType=x-scheme-handler/claildesk;
-TryExec=rustdesk
-Exec=rustdesk %u
-Icon=rustdesk
+TryExec=claildesk
+Exec=claildesk %u
+Icon=claildesk
 Terminal=false
 Type=Application
 StartupNotify=false
-StartupWMClass=rustdesk
+StartupWMClass=claildesk

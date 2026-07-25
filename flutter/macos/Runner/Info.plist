@@ -26,10 +26,10 @@
 			<key>CFBundleURLIconFile</key>
 			<string></string>
 			<key>CFBundleURLName</key>
-			<string>com.zibochen.subnetdesk</string>
+			<string>com.zibochen.claildesk</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>subnetdesk</string>
+				<string>claildesk</string>
 			</array>
 		</dict>
 	</array>
