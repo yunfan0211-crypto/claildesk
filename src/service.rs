@@ -1,4 +1,4 @@
-use librustdesk::*;
+use libclaildesk::*;
 
 #[cfg(not(target_os = "macos"))]
 fn main() {}

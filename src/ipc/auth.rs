@@ -979,8 +979,8 @@ mod tests {
     #[test]
     #[cfg(windows)]
     fn test_executable_paths_match_windows_normalization() {
-        let left = std::path::PathBuf::from(r"\\?\C:\Program Files\RustDesk\RustDesk.exe");
-        let right = std::path::PathBuf::from(r"c:\program files\rustdesk\rustdesk.exe");
+        let left = std::path::PathBuf::from(r"\\?\C:\Program Files\claildesk\claildesk.exe");
+        let right = std::path::PathBuf::from(r"c:\program files\claildesk\claildesk.exe");
         assert!(super::executable_paths_match(&left, &right));
     }
 

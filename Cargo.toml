@@ -9,7 +9,7 @@ default-run = "claildesk"
 rust-version = "1.75"
 
 [lib]
-name = "librustdesk"
+name = "libclaildesk"
 crate-type = ["cdylib", "staticlib", "rlib"]
 
 [[bin]]

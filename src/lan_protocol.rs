@@ -12,7 +12,7 @@ use hbb_common::{
     tcp, timeout, ResultType, Stream,
 };
 
-const TRANSCRIPT_PREFIX: &[u8] = b"rustdesk-lan-handshake-v1\0";
+const TRANSCRIPT_PREFIX: &[u8] = b"claildesk-lan-handshake-v1\0";
 
 pub struct LanPeerIdentity {
     pub device_public_key: Vec<u8>,

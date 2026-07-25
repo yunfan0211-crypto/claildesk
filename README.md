@@ -24,7 +24,7 @@ claildesk is an independently maintained remote desktop tool for direct remote a
 - Verify device fingerprints before trusting a new endpoint.
 - Restrict incoming connections to selected CIDR networks.
 - Keep recent devices and favorites for quick reconnection.
-- Use the familiar RustDesk remote-control experience without a public coordination server.
+- Use the familiar claildesk remote-control experience without a public coordination server.
 
 > claildesk does not provide Internet rendezvous or relay services. Devices must be reachable through the same LAN, a routed private network, or a VPN such as WireGuard, Tailscale, or OpenVPN.
 

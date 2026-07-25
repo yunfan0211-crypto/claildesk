@@ -12,7 +12,7 @@
   <a href="README.md">English</a> · 简体中文
 </p>
 
-claildesk 是一个独立维护的 RustDesk 分支，面向局域网和 VPN 内的点对点远程访问。项目移除了公网设备 ID、信令服务器、中继、云账号、代理和公网自动更新等路径，改为直接连接地址并自动发现本地设备。
+claildesk 是一个独立维护的 RustDesk 分叉版本，面向局域网和 VPN 内的点对点远程访问。项目移除了公网设备 ID、信令服务器、中继、云账号、代理和公网自动更新等路径，改为直接连接地址并自动发现本地设备。
 
 ![已发现设备](assets/screenshots/device-discovery.png)
 
@@ -24,7 +24,7 @@ claildesk 是一个独立维护的 RustDesk 分支，面向局域网和 VPN 内�
 - 首次连接时核对设备指纹，避免连接到错误设备。
 - 可通过 CIDR 网段限制允许接入的网络。
 - 支持最近访问、收藏和快速重连。
-- 保留熟悉的 RustDesk 远程控制体验，无需部署公网协调服务器。
+- 保留熟悉的 claildesk 远程控制体验，无需部署公网协调服务器。
 
 > claildesk 不提供公网信令或中继服务。两台设备需要位于同一局域网、可路由的私有网络，或通过 WireGuard、Tailscale、OpenVPN 等 VPN 互通。
 
