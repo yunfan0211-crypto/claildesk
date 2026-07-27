@@ -80,7 +80,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
         command_line_arguments.end());
   }
 
-  std::wstring app_name = L"SubnetDesk";
+  std::wstring app_name = L"Claildesk";
   FUNC_CLAILDESK_GET_APP_NAME get_claildesk_app_name = (FUNC_CLAILDESK_GET_APP_NAME)GetProcAddress(hInstance, "get_claildesk_app_name");
   if (get_claildesk_app_name) {
     wchar_t app_name_buffer[512] = {0};
