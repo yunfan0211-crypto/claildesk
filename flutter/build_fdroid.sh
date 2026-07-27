@@ -226,18 +226,18 @@ prebuild)
 	cargo install \
 		cargo-ndk \
 		--version "${CARGO_NDK_VERSION}" \
-		--locked
+		
 
 	# Install rust bridge generator
 
 	cargo install \
 		cargo-expand \
 		--version "${CARGO_EXPAND_VERSION}" \
-		--locked
+		
 	cargo install flutter_rust_bridge_codegen \
 		--version "${FLUTTER_RUST_BRIDGE_VERSION}" \
 		--features "uuid" \
-		--locked
+		
 
 	# Populate native vcpkg dependencies
 
@@ -393,7 +393,7 @@ build)
 		--target "${RUST_TARGET}" \
 		--bindgen \
 		build \
-		--locked \
+		 \
 		--release \
 		--features "${RUSTDESK_FEATURES}"
 
