@@ -319,7 +319,8 @@ jobs:
         if: env.UPLOAD_ARTIFACT == 'true'
         run: |
           pushd ./res/msi
-          python preprocess.py --arp --app-name Claildesk --manufacturer Claildesk -d ../../rustdesk
+          $buildDate = Get-Date -format "yyyy-MM-dd HH:mm"
+          python preprocess.py --arp --app-name Claildesk --manufacturer Claildesk -d ../../rustdesk --version ${{ env.VERSION }} --build-date $buildDate
           if ($LASTEXITCODE -ne 0) { throw "MSI preprocessing failed with exit code $LASTEXITCODE" }
           nuget restore msi.sln
           $msiPlatform = if ('${{ matrix.job.arch }}' -eq 'aarch64') { 'ARM64' } else { 'x64' }
