@@ -44,7 +44,7 @@ env:
   # 2. Update the `VCPKG_COMMIT_ID` in `ci.yml` and `playground.yml`.
   VCPKG_COMMIT_ID: "120deac3062162151622ca4860575a33844ba10b"
   ARMV7_VCPKG_COMMIT_ID: "6f29f12e82a8293156836ad81cc9bf5af41fe836" # 2025.01.13, got "/opt/artifacts/vcpkg/vcpkg: No such file or directory" with latest version
-  VERSION: "1.1.0"
+  VERSION: ${{ env.TAG_NAME }}
   NDK_VERSION: "r28c"
   #signing keys env variable checks
   ANDROID_SIGNING_KEY: "${{ secrets.ANDROID_SIGNING_KEY }}"
@@ -320,13 +320,14 @@ jobs:
         run: |
           pushd ./res/msi
           $buildDate = Get-Date -format "yyyy-MM-dd HH:mm"
-          python preprocess.py --arp --app-name Claildesk --manufacturer Claildesk -d ../../rustdesk --version ${{ env.VERSION }} --build-date $buildDate
+          $env:VERSION = $env:TAG_NAME -replace '^v', ''
+          python preprocess.py --arp --app-name Claildesk --manufacturer Claildesk -d ../../rustdesk --version $env:VERSION --build-date (Get-Date -format "yyyy-MM-dd HH:mm")
           if ($LASTEXITCODE -ne 0) { throw "MSI preprocessing failed with exit code $LASTEXITCODE" }
           nuget restore msi.sln
           $msiPlatform = if ('${{ matrix.job.arch }}' -eq 'aarch64') { 'ARM64' } else { 'x64' }
           msbuild msi.sln -p:Configuration=Release -p:Platform=$msiPlatform /p:TargetVersion=Windows10
           $msi = Get-ChildItem ./Package/bin/*/Release/en-us/Package.msi | Select-Object -First 1
-          mv $msi.FullName ../../SignOutput/claildesk-${{ env.VERSION }}-${{ matrix.job.arch }}.msi
+          mv $msi.FullName ../../SignOutput/claildesk-$env:VERSION-${{ matrix.job.arch }}.msi
           sha256sum ../../SignOutput/claildesk-*.msi
 
       - name: Sign ClaiDesk self-extracted file
