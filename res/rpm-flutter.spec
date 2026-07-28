@@ -1,10 +1,10 @@
-Name:       rustdesk
+Name:       claildesk
 Version:    1.1.0
 Release:    0
 Summary:    RPM package
 License:    GPL-3.0
-URL:        https://rustdesk.com
-Vendor:     rustdesk <info@rustdesk.com>
+URL:        https://claildesk.com
+Vendor:     claildesk <info@claildesk.com>
 Requires:   gtk3 libxcb libXfixes alsa-lib libva pam gstreamer1-plugins-base
 Recommends: libayatana-appindicator-gtk3 libxdo
 Provides:   libdesktop_drop_plugin.so()(64bit), libdesktop_multi_window_plugin.so()(64bit), libfile_selector_linux_plugin.so()(64bit), libflutter_custom_cursor_plugin.so()(64bit), libflutter_linux_gtk.so()(64bit), libscreen_retriever_plugin.so()(64bit), libtray_manager_plugin.so()(64bit), liburl_launcher_linux_plugin.so()(64bit), libwindow_manager_plugin.so()(64bit), libwindow_size_plugin.so()(64bit), libtexture_rgba_renderer_plugin.so()(64bit)
@@ -24,21 +24,21 @@ The best open-source remote desktop client software, written in Rust.
 
 %install
 
-mkdir -p "%{buildroot}/usr/share/rustdesk" && cp -r ${HBB}/flutter/build/linux/x64/release/bundle/* -t "%{buildroot}/usr/share/rustdesk"
+mkdir -p "%{buildroot}/usr/share/claildesk" && cp -r ${HBB}/flutter/build/linux/x64/release/bundle/* -t "%{buildroot}/usr/share/claildesk"
 mkdir -p "%{buildroot}/usr/bin"
-install -Dm 644 $HBB/res/subnetdesk.service -t "%{buildroot}/usr/share/rustdesk/files"
-install -Dm 644 $HBB/res/rustdesk.desktop -t "%{buildroot}/usr/share/rustdesk/files"
-install -Dm 644 $HBB/res/rustdesk-link.desktop -t "%{buildroot}/usr/share/rustdesk/files"
-install -Dm 644 $HBB/res/128x128@2x.png "%{buildroot}/usr/share/icons/hicolor/256x256/apps/rustdesk.png"
-install -Dm 644 $HBB/res/scalable.svg "%{buildroot}/usr/share/icons/hicolor/scalable/apps/rustdesk.svg"
+install -Dm 644 $HBB/res/claildesk.service -t "%{buildroot}/usr/share/claildesk/files"
+install -Dm 644 $HBB/res/claildesk.desktop -t "%{buildroot}/usr/share/claildesk/files"
+install -Dm 644 $HBB/res/claildesk-link.desktop -t "%{buildroot}/usr/share/claildesk/files"
+install -Dm 644 $HBB/res/128x128@2x.png "%{buildroot}/usr/share/icons/hicolor/256x256/apps/claildesk.png"
+install -Dm 644 $HBB/res/scalable.svg "%{buildroot}/usr/share/icons/hicolor/scalable/apps/claildesk.svg"
 
 %files
-/usr/share/rustdesk/*
-/usr/share/rustdesk/files/subnetdesk.service
-/usr/share/icons/hicolor/256x256/apps/rustdesk.png
-/usr/share/icons/hicolor/scalable/apps/rustdesk.svg
-/usr/share/rustdesk/files/rustdesk.desktop
-/usr/share/rustdesk/files/rustdesk-link.desktop
+/usr/share/claildesk/*
+/usr/share/claildesk/files/claildesk.service
+/usr/share/icons/hicolor/256x256/apps/claildesk.png
+/usr/share/icons/hicolor/scalable/apps/claildesk.svg
+/usr/share/claildesk/files/claildesk.desktop
+/usr/share/claildesk/files/claildesk-link.desktop
 
 %changelog
 # let's skip this for now
@@ -51,34 +51,34 @@ case "$1" in
   ;;
   2)
     # for upgrade
-    systemctl stop subnetdesk || true
-    systemctl stop rustdesk || true
+    systemctl stop claildesk || true
+    systemctl stop claildesk || true
   ;;
 esac
 
 %post
-systemctl stop rustdesk || true
-systemctl disable rustdesk || true
-rm -f /etc/systemd/system/rustdesk.service
-cp /usr/share/rustdesk/files/subnetdesk.service /etc/systemd/system/subnetdesk.service
-cp /usr/share/rustdesk/files/rustdesk.desktop /usr/share/applications/
-cp /usr/share/rustdesk/files/rustdesk-link.desktop /usr/share/applications/
-ln -sf /usr/share/rustdesk/rustdesk /usr/bin/rustdesk
+systemctl stop claildesk || true
+systemctl disable claildesk || true
+rm -f /etc/systemd/system/claildesk.service
+cp /usr/share/claildesk/files/claildesk.service /etc/systemd/system/claildesk.service
+cp /usr/share/claildesk/files/claildesk.desktop /usr/share/applications/
+cp /usr/share/claildesk/files/claildesk-link.desktop /usr/share/applications/
+ln -sf /usr/share/claildesk/claildesk /usr/bin/claildesk
 systemctl daemon-reload
-systemctl enable subnetdesk
-systemctl start subnetdesk
+systemctl enable claildesk
+systemctl start claildesk
 update-desktop-database
 
 %preun
 case "$1" in
   0)
     # for uninstall
-    systemctl stop subnetdesk || true
-    systemctl disable subnetdesk || true
-    systemctl stop rustdesk || true
-    systemctl disable rustdesk || true
-    rm /etc/systemd/system/subnetdesk.service || true
-    rm /etc/systemd/system/rustdesk.service || true
+    systemctl stop claildesk || true
+    systemctl disable claildesk || true
+    systemctl stop claildesk || true
+    systemctl disable claildesk || true
+    rm /etc/systemd/system/claildesk.service || true
+    rm /etc/systemd/system/claildesk.service || true
   ;;
   1)
     # for upgrade
@@ -89,17 +89,17 @@ esac
 case "$1" in
   0)
     # for uninstall
-    rm /usr/bin/rustdesk || true
-    rmdir /usr/lib/rustdesk || true
-    rmdir /usr/local/rustdesk || true
-    rmdir /usr/share/rustdesk || true
-    rm /usr/share/applications/rustdesk.desktop || true
-    rm /usr/share/applications/rustdesk-link.desktop || true
+    rm /usr/bin/claildesk || true
+    rmdir /usr/lib/claildesk || true
+    rmdir /usr/local/claildesk || true
+    rmdir /usr/share/claildesk || true
+    rm /usr/share/applications/claildesk.desktop || true
+    rm /usr/share/applications/claildesk-link.desktop || true
     update-desktop-database
   ;;
   1)
     # for upgrade
-    rmdir /usr/lib/rustdesk || true
-    rmdir /usr/local/rustdesk || true
+    rmdir /usr/lib/claildesk || true
+    rmdir /usr/local/claildesk || true
   ;;
 esac
