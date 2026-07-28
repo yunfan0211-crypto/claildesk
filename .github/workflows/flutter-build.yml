@@ -319,7 +319,7 @@ jobs:
         if: env.UPLOAD_ARTIFACT == 'true'
         run: |
           pushd ./res/msi
-          python preprocess.py --arp --app-name ClaiDesk --manufacturer ClaiDesk -d ../../rustdesk
+          python preprocess.py --arp --app-name Claildesk --manufacturer Claildesk -d ../../rustdesk
           if ($LASTEXITCODE -ne 0) { throw "MSI preprocessing failed with exit code $LASTEXITCODE" }
           nuget restore msi.sln
           $msiPlatform = if ('${{ matrix.job.arch }}' -eq 'aarch64') { 'ARM64' } else { 'x64' }
