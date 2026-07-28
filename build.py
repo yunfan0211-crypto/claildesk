@@ -421,7 +421,7 @@ def build_flutter_dmg(version, features):
     # Flutter signs the app before the service binary is copied. Sign the new nested
     # executable, refresh the outer ad-hoc signature, and fail before packaging if
     # the resulting bundle seal is invalid. Release CI may replace this signature.
-    app_path = './build/macos/Build/Products/Release/SubnetDesk.app'
+    app_path = './build/macos/Build/Products/Release/claildesk.app'
     service_path = f'{app_path}/Contents/MacOS/service'
     system2(f'codesign --force --sign - --options runtime "{service_path}"')
     system2(

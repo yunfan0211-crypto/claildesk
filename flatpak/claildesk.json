@@ -1,5 +1,5 @@
 {
-  "id": "com.claildesk",
+  "id": "com.zibochen.claildesk",
   "runtime": "org.freedesktop.Platform",
   "runtime-version": "24.08",
   "sdk": "org.freedesktop.Sdk",

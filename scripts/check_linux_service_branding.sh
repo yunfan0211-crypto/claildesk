@@ -46,7 +46,7 @@ if [[ -e res/rustdesk.service ]]; then
 fi
 
 require_fixed "$service_resource" 'Description=claildesk'
-require_fixed "$service_resource" 'ExecStop=/usr/bin/pkill -f "rustdesk --"'
+require_fixed "$service_resource" 'ExecStop=/usr/bin/pkill -f "claildesk --"'
 require_fixed res/DEBIAN/postinst '/usr/lib/systemd/system/claildesk.service'
 require_fixed res/DEBIAN/postinst 'systemctl enable claildesk'
 require_fixed res/DEBIAN/postinst 'systemctl start claildesk'
