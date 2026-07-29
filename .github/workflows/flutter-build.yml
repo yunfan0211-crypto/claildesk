@@ -1,4 +1,4 @@
-name: Build ClaiDesk native packages
+name: Build Claildesk native packages
 
 on:
   workflow_call:
@@ -218,13 +218,13 @@ jobs:
         shell: bash
         run: echo "SODIUM_LIB_DIR=$VCPKG_ROOT/installed/${{ matrix.job.vcpkg-triplet }}/lib" >> "$GITHUB_ENV"
 
-      - name: Build ClaiDesk
+      - name: Build Claildesk
         run: |
           # Windows: build RustDesk
           # --hwcodec is shared by all Windows targets; per-target extras (e.g. --vram) come from the matrix
           python3 .\build.py --portable --flutter --skip-portable-pack --hwcodec ${{ matrix.job.build-args }}
           mv ./flutter/build/windows/${{ matrix.job.flutter-arch }}/runner/Release ./rustdesk
-          Rename-Item ./rustdesk/claildesk.exe ClaiDesk.exe
+          Rename-Item ./rustdesk/claildesk.exe Claildesk.exe
 
           # Download usbmmidd_v2.zip and extract it to ./rustdesk
           Invoke-WebRequest -Uri https://github.com/rustdesk-org/rdev/releases/download/usbmmidd_v2/usbmmidd_v2.zip -OutFile usbmmidd_v2.zip
@@ -290,7 +290,7 @@ jobs:
           name: claildesk-unsigned-windows-${{ matrix.job.arch }}
           path: rustdesk
 
-      - name: Sign ClaiDesk files
+      - name: Sign Claildesk files
         if: env.UPLOAD_ARTIFACT == 'true' && env.SIGN_BASE_URL != '-2'
         shell: bash
         run: |
@@ -331,7 +331,7 @@ jobs:
           mv $msi.FullName ../../SignOutput/claildesk-$VERSION-${{ matrix.job.arch }}.msi
           sha256sum ../../SignOutput/claildesk-*.msi
 
-      - name: Sign ClaiDesk self-extracted file
+      - name: Sign Claildesk self-extracted file
         if: env.UPLOAD_ARTIFACT == 'true' && env.SIGN_BASE_URL != '-2'
         shell: bash
         run: |
@@ -433,7 +433,7 @@ jobs:
           head -n 100 "${VCPKG_ROOT}/buildtrees/ffmpeg/build-${{ matrix.job.vcpkg-triplet }}-rel-out.log" || true
         shell: bash
 
-      - name: Build ClaiDesk
+      - name: Build Claildesk
         id: build
         shell: bash
         run: |
@@ -477,7 +477,7 @@ jobs:
           name: claildesk-unsigned-windows-${{ matrix.job.arch }}
           path: Release
 
-      - name: Sign ClaiDesk files
+      - name: Sign Claildesk files
         if: env.UPLOAD_ARTIFACT == 'true' && env.SIGN_BASE_URL != '-2'
         shell: bash
         run: |
@@ -495,7 +495,7 @@ jobs:
           mkdir -p ./SignOutput
           mv ./target/release/claildesk-portable-packer.exe ./SignOutput/claildesk-${{ env.VERSION }}-${{ matrix.job.arch }}-sciter.exe
 
-      - name: Sign ClaiDesk self-extracted file
+      - name: Sign Claildesk self-extracted file
         if: env.UPLOAD_ARTIFACT == 'true' && env.SIGN_BASE_URL != '-2'
         shell: bash
         run: |
@@ -510,10 +510,11 @@ jobs:
           tag_name: ${{ env.TAG_NAME }}
           files: |
             ./SignOutput/claildesk-*.exe
+            ./SignOutput/claildesk-*.msi
 
   build-rustdesk-ios:
     if: ${{ inputs.upload-artifact && inputs.build-mobile }}
-    name: Build ClaiDesk ios ipa
+    name: Build Claildesk ios ipa
     runs-on: ${{ matrix.job.os }}
     needs: [generate_bridge]
     strategy:
@@ -590,7 +591,7 @@ jobs:
           name: bridge-artifact
           path: ./
 
-      - name: Build ClaiDesk lib
+      - name: Build Claildesk lib
         run: |
           rustup target add ${{ matrix.job.target }}
           cargo build --features flutter,hwcodec --release --target aarch64-apple-ios --lib
@@ -601,7 +602,7 @@ jobs:
           name: liblibrustdesk.a
           path: target/aarch64-apple-ios/release/liblibrustdesk.a
 
-      - name: Build ClaiDesk
+      - name: Build Claildesk
         shell: bash
         run: |
           pushd flutter
@@ -779,7 +780,7 @@ jobs:
           cargo -V
           rustc -V
 
-      - name: Build ClaiDesk
+      - name: Build Claildesk
         run: |
           if [ "${{ matrix.job.target }}" = "aarch64-apple-darwin" ]; then
             MIN_MACOS_VERSION="12.3"
@@ -882,7 +883,7 @@ jobs:
   build-rustdesk-android:
     if: ${{ inputs.build-mobile }}
     needs: [generate_bridge]
-    name: Build ClaiDesk android apk ${{ matrix.job.target }}
+    name: Build Claildesk android apk ${{ matrix.job.target }}
     runs-on: ${{ matrix.job.os }}
     strategy:
       fail-fast: false
@@ -1032,7 +1033,7 @@ jobs:
           prefix-key: rustdesk-lib-cache-android # TODO: drop '-android' part after caches are invalidated
           key: ${{ matrix.job.target }}
 
-      - name: Build ClaiDesk lib
+      - name: Build Claildesk lib
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
           ANDROID_NDK_ROOT: ${{ steps.setup-ndk.outputs.ndk-path }}
@@ -1068,7 +1069,7 @@ jobs:
           name: librustdesk.so.${{ matrix.job.target }}
           path: ./target/${{ matrix.job.target }}/release/liblibrustdesk.so
 
-      - name: Build ClaiDesk
+      - name: Build Claildesk
         shell: bash
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
@@ -1171,7 +1172,7 @@ jobs:
 
   build-rustdesk-android-universal:
     needs: [build-rustdesk-android]
-    name: Build ClaiDesk android universal apk
+    name: Build Claildesk android universal apk
     if: ${{ inputs.upload-artifact && inputs.build-mobile }}
     runs-on: ubuntu-24.04
     env:
@@ -1274,7 +1275,7 @@ jobs:
           name: librustdesk.so.i686-linux-android
           path: ./flutter/android/app/src/main/jniLibs/x86
 
-      - name: Build ClaiDesk
+      - name: Build Claildesk
         shell: bash
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
@@ -1352,7 +1353,7 @@ jobs:
 
   build-rustdesk-linux:
     needs: [generate_bridge]
-    name: Build ClaiDesk linux ${{ matrix.job.target }}
+    name: Build Claildesk linux ${{ matrix.job.target }}
     runs-on: ${{ matrix.job.on }}
     strategy:
       fail-fast: false
@@ -1471,7 +1472,7 @@ jobs:
           path: ./
 
       - uses: rustdesk-org/run-on-arch-action@d3fcfbb632b84cf7f6bc772bfaaa2c2f4f8789a8 # no release tag; commit 2026-05-26
-        name: Build ClaiDesk
+        name: Build Claildesk
         id: vcpkg
         if: matrix.job.arch == 'x86_64' || env.UPLOAD_ARTIFACT == 'true'
         with:
@@ -1752,7 +1753,7 @@ jobs:
           echo "RUST_TOOLCHAIN_VERSION=$RUST_TOOLCHAIN_VERSION" >> $GITHUB_ENV
 
       - uses: rustdesk-org/run-on-arch-action@d3fcfbb632b84cf7f6bc772bfaaa2c2f4f8789a8 # no release tag; commit 2026-05-26
-        name: Build ClaiDesk sciter binary for ${{ matrix.job.arch }}
+        name: Build Claildesk sciter binary for ${{ matrix.job.arch }}
         id: vcpkg
         with:
           arch: ${{ matrix.job.arch }}
@@ -2018,7 +2019,7 @@ jobs:
           mv claildesk-${{ env.VERSION }}-${{ matrix.job.arch }}${{ matrix.job.suffix }}.deb flatpak/rustdesk.deb
 
       - uses: rustdesk-org/run-on-arch-action@d3fcfbb632b84cf7f6bc772bfaaa2c2f4f8789a8 # no release tag; commit 2026-05-26
-        name: Build ClaiDesk flatpak package for ${{ matrix.job.arch }}
+        name: Build Claildesk flatpak package for ${{ matrix.job.arch }}
         id: flatpak
         with:
           arch: ${{ matrix.job.arch }}
