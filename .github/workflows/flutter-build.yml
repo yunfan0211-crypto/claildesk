@@ -1059,7 +1059,7 @@ jobs:
             i686-linux-android)
               ./flutter/ndk_x86.sh
               mkdir -p ./flutter/android/app/src/main/jniLibs/x86
-              cp ./target/${{ matrix.job.target }}/release/liblibclaildesk.so ./flutter/android/app/src/main/jniLibs/x86/libclaildesk.so
+              cp ./target/${{ matrix.job.target }}/release/libclaildesk.so ./flutter/android/app/src/main/jniLibs/x86/libclaildesk.so
             ;;
           esac
 
@@ -1110,7 +1110,7 @@ jobs:
             i686-linux-android)
               mkdir -p ./flutter/android/app/src/main/jniLibs/x86
               cp ${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/i686-linux-android/libc++_shared.so ./flutter/android/app/src/main/jniLibs/x86/
-              cp ./target/${{ matrix.job.target }}/release/liblibclaildesk.so ./flutter/android/app/src/main/jniLibs/x86/libclaildesk.so
+              cp ./target/${{ matrix.job.target }}/release/libclaildesk.so ./flutter/android/app/src/main/jniLibs/x86/libclaildesk.so
               # build flutter
               pushd flutter
               flutter build apk "--${{ matrix.job.reltype }}" --target-platform android-x86 --split-per-abi

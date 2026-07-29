@@ -14,7 +14,7 @@ from pathlib import Path
 windows = platform.platform().startswith('Windows')
 osx = platform.platform().startswith(
     'Darwin') or platform.platform().startswith("macOS")
-hbb_name = 'rustdesk' + ('.exe' if windows else '')
+hbb_name = 'claildesk' + ('.exe' if windows else '')
 exe_path = 'target/release/' + hbb_name
 if windows:
     win_arch = 'arm64' if platform.machine().lower() in ('arm64', 'aarch64') else 'x64'
@@ -293,13 +293,13 @@ def generate_control_file(version):
     control_file_path = "../res/DEBIAN/control"
     system2('/bin/rm -rf %s' % control_file_path)
 
-    content = """Package: rustdesk
+    content = """Package: claildesk
 Section: net
 Priority: optional
 Version: %s
 Architecture: %s
-Maintainer: rustdesk <info@rustdesk.com>
-Homepage: https://rustdesk.com
+Maintainer: claildesk <info@claildesk.com>
+Homepage: https://claildesk.com
 Depends: libgtk-3-0t64 | libgtk-3-0, libxcb-randr0, libxdo3 | libxdo4, libxfixes3, libxcb-shape0, libxcb-xfixes0, libasound2t64 | libasound2, libsystemd0, curl, libva2, libva-drm2, libva-x11-2, libgstreamer-plugins-base1.0-0, libpam0g, gstreamer1.0-pipewire%s
 Recommends: libayatana-appindicator3-1
 Description: A remote control software.
@@ -331,15 +331,15 @@ def build_flutter_deb(version, features):
     system2('mkdir -p tmpdeb/usr/share/icons/hicolor/scalable/apps/')
     system2('mkdir -p tmpdeb/usr/share/applications/')
     system2('mkdir -p tmpdeb/usr/share/polkit-1/actions')
-    system2('rm tmpdeb/usr/bin/rustdesk || true')
+    system2('rm tmpdeb/usr/bin/claildesk || true')
     system2(
         f'cp -r {flutter_build_dir}/* tmpdeb/usr/share/claildesk/')
     system2(
         'cp ../res/claildesk.service tmpdeb/usr/share/claildesk/files/systemd/')
     system2(
-        'cp ../res/128x128@2x.png tmpdeb/usr/share/icons/hicolor/256x256/apps/rustdesk.png')
+        'cp ../res/128x128@2x.png tmpdeb/usr/share/icons/hicolor/256x256/apps/claildesk.png')
     system2(
-        'cp ../res/scalable.svg tmpdeb/usr/share/icons/hicolor/scalable/apps/rustdesk.svg')
+        'cp ../res/scalable.svg tmpdeb/usr/share/icons/hicolor/scalable/apps/claildesk.svg')
     system2(
         'cp ../res/claildesk.desktop tmpdeb/usr/share/applications/claildesk.desktop')
     system2(
@@ -374,15 +374,15 @@ def build_deb_from_folder(version, binary_folder):
     system2('mkdir -p tmpdeb/usr/share/icons/hicolor/scalable/apps/')
     system2('mkdir -p tmpdeb/usr/share/applications/')
     system2('mkdir -p tmpdeb/usr/share/polkit-1/actions')
-    system2('rm tmpdeb/usr/bin/rustdesk || true')
+    system2('rm tmpdeb/usr/bin/claildesk || true')
     system2(
         f'cp -r ../{binary_folder}/* tmpdeb/usr/share/claildesk/')
     system2(
         'cp ../res/claildesk.service tmpdeb/usr/share/claildesk/files/systemd/')
     system2(
-        'cp ../res/128x128@2x.png tmpdeb/usr/share/icons/hicolor/256x256/apps/rustdesk.png')
+        'cp ../res/128x128@2x.png tmpdeb/usr/share/icons/hicolor/256x256/apps/claildesk.png')
     system2(
-        'cp ../res/scalable.svg tmpdeb/usr/share/icons/hicolor/scalable/apps/rustdesk.svg')
+        'cp ../res/scalable.svg tmpdeb/usr/share/icons/hicolor/scalable/apps/claildesk.svg')
     system2(
         'cp ../res/claildesk.desktop tmpdeb/usr/share/applications/claildesk.desktop')
     system2(
@@ -409,7 +409,7 @@ def build_flutter_dmg(version, features):
             f'MACOSX_DEPLOYMENT_TARGET=10.14 cargo build  --features {features} --release')
     # copy dylib
     system2(
-        "cp target/release/liblibrustdesk.dylib target/release/librustdesk.dylib")
+        "cp target/release/libclaildesk.dylib target/release/libclaildesk.dylib")
     os.chdir('flutter')
     # cargo builds a single-arch dylib for the host; restrict Xcode to the same arch
     # so the universal-by-default ARCHS_STANDARD doesn't try to link a missing slice.
@@ -625,23 +625,23 @@ def main():
                 system2(
                     'cp res/claildesk.service tmpdeb/usr/share/claildesk/files/systemd/')
                 system2(
-                    'cp res/128x128@2x.png tmpdeb/usr/share/icons/hicolor/256x256/apps/rustdesk.png')
+                    'cp res/128x128@2x.png tmpdeb/usr/share/icons/hicolor/256x256/apps/claildesk.png')
                 system2(
-                    'cp res/scalable.svg tmpdeb/usr/share/icons/hicolor/scalable/apps/rustdesk.svg')
+                    'cp res/scalable.svg tmpdeb/usr/share/icons/hicolor/scalable/apps/claildesk.svg')
                 system2(
-                    'cp res/rustdesk.desktop tmpdeb/usr/share/applications/rustdesk.desktop')
+                    'cp res/claildesk.desktop tmpdeb/usr/share/applications/claildesk.desktop')
                 system2(
-                    'cp res/rustdesk-link.desktop tmpdeb/usr/share/applications/rustdesk-link.desktop')
+                    'cp res/claildesk-link.desktop tmpdeb/usr/share/applications/claildesk-link.desktop')
                 os.system('mkdir -p tmpdeb/etc/claildesk/')
                 os.system('cp -a res/startwm.sh tmpdeb/etc/claildesk/')
                 os.system('mkdir -p tmpdeb/etc/X11/claildesk/')
                 os.system('cp res/xorg.conf tmpdeb/etc/X11/claildesk/')
                 os.system('cp -a DEBIAN/* tmpdeb/DEBIAN/')
                 os.system('mkdir -p tmpdeb/etc/pam.d/')
-                os.system('cp pam.d/rustdesk.debian tmpdeb/etc/pam.d/rustdesk')
-                system2('strip tmpdeb/usr/bin/rustdesk')
+                os.system('cp res/pam.d/claildesk.debian tmpdeb/etc/pam.d/claildesk')
+                system2('strip tmpdeb/usr/bin/claildesk')
                 system2('mkdir -p tmpdeb/usr/share/claildesk')
-                system2('mv tmpdeb/usr/bin/rustdesk tmpdeb/usr/share/claildesk/')
+                system2('mv tmpdeb/usr/bin/claildesk tmpdeb/usr/share/claildesk/')
                 system2('cp libsciter-gtk.so tmpdeb/usr/share/claildesk/')
                 md5_file_folder("tmpdeb/")
                 system2('dpkg-deb -b tmpdeb rustdesk.deb; /bin/rm -rf tmpdeb/')
