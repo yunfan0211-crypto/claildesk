@@ -44,7 +44,7 @@ env:
   # 2. Update the `VCPKG_COMMIT_ID` in `ci.yml` and `playground.yml`.
   VCPKG_COMMIT_ID: "120deac3062162151622ca4860575a33844ba10b"
   ARMV7_VCPKG_COMMIT_ID: "6f29f12e82a8293156836ad81cc9bf5af41fe836" # 2025.01.13, got "/opt/artifacts/vcpkg/vcpkg: No such file or directory" with latest version
-  VERSION: ${{ inputs.upload-tag }}
+  VERSION: "1.3.0"
   NDK_VERSION: "r28c"
   #signing keys env variable checks
   ANDROID_SIGNING_KEY: "${{ secrets.ANDROID_SIGNING_KEY }}"
@@ -1554,6 +1554,14 @@ jobs:
             fi
             echo $JOBS
             cargo build --lib $JOBS --features hwcodec,flutter,unix-file-copy-paste --release
+            # For cross-compiled targets (aarch64 on x86_64 runner), copy the built .so
+            # to where CMake will look for it during flutter build.
+            # CMakeLists.txt expects: ../../target/<target>/release/libclaildesk.so
+            # from path: flutter/linux/flutter/build/linux/arm64/release/bundle/
+            if [[ "${{ matrix.job.arch }}" == "aarch64" ]]; then
+              mkdir -p target/aarch64-unknown-linux-gnu/release
+              cp target/release/libclaildesk.so target/aarch64-unknown-linux-gnu/release/
+            fi
             rm -rf target/release/deps target/release/build
             rm -rf ~/.cargo
 
