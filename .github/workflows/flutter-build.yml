@@ -317,17 +317,18 @@ jobs:
         # both x64 and ARM64 platform configs; WcaUtil/DUtil ship arm64 libs. msbuild platform
         # is x64 / ARM64; the produced Package.msi is globbed since its bin/<platform>/ dir varies.
         if: env.UPLOAD_ARTIFACT == 'true'
+        shell: pwsh
         run: |
           pushd ./res/msi
           $buildDate = Get-Date -format "yyyy-MM-dd HH:mm"
-          $env:VERSION = $env:TAG_NAME -replace '^v', ''
-          python preprocess.py --arp --app-name Claildesk --manufacturer Claildesk -d ../../rustdesk --version $env:VERSION --build-date (Get-Date -format "yyyy-MM-dd HH:mm")
+          $VERSION = "${{ env.VERSION }}" -replace '^v', ''
+          python preprocess.py --arp --app-name Claildesk --manufacturer Claildesk -d ../../rustdesk --version $VERSION --build-date $buildDate
           if ($LASTEXITCODE -ne 0) { throw "MSI preprocessing failed with exit code $LASTEXITCODE" }
           nuget restore msi.sln
           $msiPlatform = if ('${{ matrix.job.arch }}' -eq 'aarch64') { 'ARM64' } else { 'x64' }
           msbuild msi.sln -p:Configuration=Release -p:Platform=$msiPlatform /p:TargetVersion=Windows10
           $msi = Get-ChildItem ./Package/bin/*/Release/en-us/Package.msi | Select-Object -First 1
-          mv $msi.FullName ../../SignOutput/claildesk-$env:VERSION-${{ matrix.job.arch }}.msi
+          mv $msi.FullName ../../SignOutput/claildesk-$VERSION-${{ matrix.job.arch }}.msi
           sha256sum ../../SignOutput/claildesk-*.msi
 
       - name: Sign ClaiDesk self-extracted file
@@ -580,7 +581,7 @@ jobs:
 
       - uses: Swatinem/rust-cache@e18b497796c12c097a38f9edb9d0641fb99eee32 # v2
         with:
-          prefix-key: rustdesk-lib-cache-ios
+          prefix-key: claildesk-lib-cache-ios
           key: ${{ matrix.job.target }}
 
       - name: Restore bridge files
