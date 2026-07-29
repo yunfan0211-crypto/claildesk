@@ -1,4 +1,4 @@
-name: ClaiDesk Installers CI
+name: Claildesk Installers CI
 
 on:
   workflow_dispatch:

@@ -1,4 +1,4 @@
-name: ClaiDesk Preflight
+name: Claildesk Preflight
 
 permissions:
   contents: read
@@ -27,7 +27,7 @@ jobs:
       - name: Check LAN-only residuals
         run: bash scripts/check_lan_only_residuals.sh
 
-      - name: Check ClaiDesk branding and icons
+      - name: Check Claildesk branding and icons
         run: bash scripts/check_claildesk_branding.sh
 
       - name: Check installer artifact contract

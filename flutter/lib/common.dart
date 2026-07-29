@@ -2537,7 +2537,7 @@ List<String>? urlLinkToCmdArgs(Uri uri) {
       id = uri.path.substring(1);
     }
   } else if (uri.authority.length > 2 && uri.path.length <= 1) {
-    // subnetdesk://<endpoint>
+    // claildesk://<endpoint>
     command = '--connect';
     id = uri.authority;
   }
@@ -2855,7 +2855,7 @@ Future<void> onActiveWindowChanged() async {
     } catch (err) {
       debugPrintStack(label: "$err");
     } finally {
-      debugPrint("Start closing SubnetDesk...");
+      debugPrint("Start closing Claildesk...");
       await windowManager.setPreventClose(false);
       await windowManager.close();
       if (isMacOS) {

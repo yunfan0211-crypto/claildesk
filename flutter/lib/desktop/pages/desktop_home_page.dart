@@ -1208,7 +1208,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'SubnetDesk',
+                        'Claildesk',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,

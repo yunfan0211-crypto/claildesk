@@ -1,4 +1,4 @@
-name: ClaiDesk Nightly Build
+name: Claildesk Nightly Build
 
 permissions:
   contents: write

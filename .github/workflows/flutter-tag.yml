@@ -1,4 +1,4 @@
-name: ClaiDesk Release Build
+name: Claildesk Release Build
 
 permissions:
   contents: write

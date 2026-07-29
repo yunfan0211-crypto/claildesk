@@ -93,7 +93,7 @@ class MainFlutterWindow: NSWindow {
         // Do this FIRST before setting any state
         let result = CGAssociateMouseAndMouseCursorPosition(0)
         if result != CGError.success {
-            NSLog("[SubnetDesk] Failed to dissociate mouse from cursor position: %d", result.rawValue)
+            NSLog("[Claildesk] Failed to dissociate mouse from cursor position: %d", result.rawValue)
             return false
         }
 
@@ -135,7 +135,7 @@ class MainFlutterWindow: NSWindow {
 
         // Check if monitor was created successfully
         if state.eventMonitor == nil {
-            NSLog("[SubnetDesk] Failed to create event monitor for relative mouse mode")
+            NSLog("[Claildesk] Failed to create event monitor for relative mouse mode")
             // Re-associate mouse since we failed
             CGAssociateMouseAndMouseCursorPosition(1)
             state.deltaChannel = nil
@@ -167,12 +167,12 @@ class MainFlutterWindow: NSWindow {
         // Re-associate mouse with cursor position (non-blocking with async retry)
         let result = CGAssociateMouseAndMouseCursorPosition(1)
         if result != CGError.success {
-            NSLog("[SubnetDesk] Failed to re-associate mouse with cursor position: %d, scheduling retry...", result.rawValue)
+            NSLog("[Claildesk] Failed to re-associate mouse with cursor position: %d, scheduling retry...", result.rawValue)
             // Non-blocking retry after 50ms
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 let retryResult = CGAssociateMouseAndMouseCursorPosition(1)
                 if retryResult != CGError.success {
-                    NSLog("[SubnetDesk] Retry failed to re-associate mouse: %d. Cursor may remain locked.", retryResult.rawValue)
+                    NSLog("[Claildesk] Retry failed to re-associate mouse: %d. Cursor may remain locked.", retryResult.rawValue)
                 }
             }
         }

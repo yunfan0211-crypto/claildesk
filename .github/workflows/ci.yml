@@ -1,4 +1,4 @@
-name: ClaiDesk Rust CI
+name: Claildesk Rust CI
 
 permissions:
   contents: read

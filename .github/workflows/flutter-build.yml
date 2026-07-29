@@ -58,7 +58,7 @@ jobs:
     uses: ./.github/workflows/bridge.yml
 
   build-RustDeskTempTopMostWindow:
-    uses: ./.github/workflows/third-party-ClaiDeskTempTopMostWindow.yml
+    uses: ./.github/workflows/third-party-ClaildeskTempTopMostWindow.yml
     strategy:
       fail-fast: false
       matrix:
@@ -304,7 +304,7 @@ jobs:
           sed -i '/dpiAware/d' res/manifest.xml
           pushd ./libs/portable
           pip3 install -r requirements.txt
-          python3 ./generate.py -f ../../rustdesk/ -o . -e ../../rustdesk/ClaiDesk.exe
+          python3 ./generate.py -f ../../rustdesk/ -o . -e ../../rustdesk/Claildesk.exe
           popd
           mkdir -p ./SignOutput
           mv ./target/release/claildesk-portable-packer.exe ./SignOutput/claildesk-${{ env.VERSION }}-${{ matrix.job.arch }}.exe
@@ -821,7 +821,7 @@ jobs:
           codesign --force --options runtime -s ${{ secrets.MACOS_CODESIGN_IDENTITY }} --deep --strict --entitlements ./flutter/macos/Runner/Release.entitlements ./flutter/build/macos/Build/Products/Release/claildesk.app -vvv
           create-dmg --icon "claildesk.app" 200 190 --hide-extension "claildesk.app" --window-size 800 400 --app-drop-link 600 185 claildesk-${{ env.VERSION }}-${{ matrix.job.arch }}.dmg ./flutter/build/macos/Build/Products/Release/claildesk.app
           codesign --force --options runtime -s ${{ secrets.MACOS_CODESIGN_IDENTITY }} --deep --strict claildesk-${{ env.VERSION }}-${{ matrix.job.arch }}.dmg -vvv
-          # notarize the architecture-specific ClaiDesk DMG
+          # notarize the architecture-specific Claildesk DMG
           rcodesign notary-submit --api-key-path ${{ github.workspace }}/rustdesk.json --staple claildesk-${{ env.VERSION }}-${{ matrix.job.arch }}.dmg
 
       - name: Upload macOS installer
@@ -1888,7 +1888,7 @@ jobs:
             export DEB_ARCH=${{ matrix.job.deb_arch }}
             ./build.py --package ./Release
 
-      - name: Rename ClaiDesk
+      - name: Rename Claildesk
         shell: bash
         run: |
           for name in rustdesk*??.deb; do
@@ -2043,7 +2043,7 @@ jobs:
             pushd flatpak
             git clone https://github.com/flathub/shared-modules.git --depth=1
             flatpak-builder --user --install-deps-from=flathub -y --force-clean --repo=repo ./build ./rustdesk.json
-            flatpak build-bundle ./repo claildesk-${{ env.VERSION }}-${{ matrix.job.arch }}${{ matrix.job.suffix }}.flatpak com.zibochen.ClaiDesk
+            flatpak build-bundle ./repo claildesk-${{ env.VERSION }}-${{ matrix.job.arch }}${{ matrix.job.suffix }}.flatpak com.zibochen.claildesk
 
       - name: Publish flatpak package
         if: env.PUBLISH_RELEASE == 'true'
