@@ -156,7 +156,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("show_monitors_tip", "Show monitors in toolbar"),
         ("View Mode", "View mode"),
         ("login_linux_tip", "You need to login to remote Linux account to enable a X desktop session"),
-        ("verify_rustdesk_password_tip", "Verify Claildesk password"),
+        ("verify_claildesk_password_tip", "Verify Claildesk password"),
         ("remember_account_tip", "Remember this account"),
         ("os_account_desk_tip", "This account is used to login the remote OS and enable the desktop session in headless"),
         ("OS Account", "OS account"),
